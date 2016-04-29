@@ -1,5 +1,4 @@
 package: github.com/rxwen/aliyun-go-sdk-push
 import:
-- package: github.com/Sirupsen/logrus
 - package: github.com/stretchr/testify/assert
 - package: github.com/nu7hatch/gouuid
