@@ -5,7 +5,7 @@ import (
 	"crypto/sha1"
 	"encoding/base64"
 	"net/url"
-	"sort"
+	"strings"
 )
 
 type ParameterSet struct {
@@ -22,26 +22,28 @@ func (s ParameterSet) Add(key, value string) {
 	s.set[key] = value
 }
 
-func (s ParameterSet) Concatenate() string {
-	var keys []string
-	for k := range s.set {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-
+func urlEncode(v string) string {
 	values := url.Values{}
-	for _, k := range keys {
-		values.Add(k, s.set[k])
+	values.Add("", v)
+	return values.Encode()[1:]
+}
+
+func (s ParameterSet) Concatenate() string {
+	values := url.Values{}
+	for k, v := range s.set {
+		values.Add(k, v)
 	}
 
-	return values.Encode()
+	result := values.Encode()
+	result = strings.Replace(result, "+", "%20", -1)
+	result = strings.Replace(result, "*", "%2A", -1)
+	result = strings.Replace(result, "%7E", "~", -1)
+	return result
 }
 
 func (s ParameterSet) GetStringToSign() string {
 	cstr := s.Concatenate()
-	values := url.Values{}
-	values.Add("", cstr)
-	result := "GET&%2F&" + values.Encode()[1:]
+	result := "GET&%2F&" + urlEncode(cstr)
 	return result
 }
 
