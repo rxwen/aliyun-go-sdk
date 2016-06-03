@@ -1,7 +1,7 @@
 package parameters_test
 
 import (
-	"github.com/rxwen/aliyun-go-sdk-push/parameters"
+	"github.com/rxwen/aliyun-go-sdk/parameters"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
