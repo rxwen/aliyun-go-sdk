@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/nu7hatch/gouuid"
-	"github.com/rxwen/aliyun-go-sdk-push/parameters"
+	"github.com/rxwen/aliyun-go-sdk/parameters"
 )
 
 const baseURL = "https://cloudpush.aliyuncs.com/"
