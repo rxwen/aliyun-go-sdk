@@ -14,9 +14,8 @@ import (
 
 const baseURL = "https://dm.aliyuncs.com/"
 
-// Client is used to send push request.
+// Client is used to send mail request.
 type Client struct {
-	//Region          string
 	AccessKeyID     string
 	AccessKeySecret string
 }
