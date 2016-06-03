@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/rxwen/aliyun-go-sdk-push"
+	"github.com/rxwen/aliyun-go-sdk/push"
 )
 
 const (
