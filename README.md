@@ -9,5 +9,3 @@ aliyun service sdk, in golang
 [testify](https://github.com/stretchr/testify/assert)
 [gouuid](https://github.com/nu7hatch/gouuid)
 
-
-
