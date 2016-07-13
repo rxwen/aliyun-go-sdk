@@ -1,7 +1,6 @@
 package directmail
 
 // https://help.aliyun.com/document_detail/29430.html?spm=5176.doc29428.6.108.pG6UlQ
-
 import (
 	"io/ioutil"
 	"net/http"
