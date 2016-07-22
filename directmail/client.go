@@ -79,7 +79,7 @@ func (c Client) SendRequest(r *MailRequest) (string, error) {
 
 	var v map[string]string
 	dec := json.NewDecoder(bytes.NewReader(body))
-	if err := dec.Decode(&v); err == nil {
+	if err := dec.Decode(&v); err != nil {
 		return "", err
 	}
 	if _, ok := v["Code"]; ok {
