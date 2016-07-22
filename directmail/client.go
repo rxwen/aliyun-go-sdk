@@ -2,6 +2,9 @@ package directmail
 
 // https://help.aliyun.com/document_detail/29430.html?spm=5176.doc29428.6.108.pG6UlQ
 import (
+	"bytes"
+	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -72,6 +75,15 @@ func (c Client) SendRequest(r *MailRequest) (string, error) {
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
+	}
+
+	var v map[string]string
+	dec := json.NewDecoder(bytes.NewReader(body))
+	if err := dec.Decode(&v); err == nil {
+		return "", err
+	}
+	if _, ok := v["Code"]; ok {
+		return "", errors.New(string(body))
 	}
 	return string(body), nil
 }
