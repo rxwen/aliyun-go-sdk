@@ -13,7 +13,7 @@ const (
 	appKey          = "xxx"
 )
 
-func main() {
+func sendPush() {
 	req := push.PushRequest{
 		// push target
 		AppKey:     appKey,
