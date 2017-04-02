@@ -74,7 +74,10 @@ func (c Client) SendRequest(r *MailRequest) (string, error) {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "", err
+		return "failed to read response", err
+	}
+	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+		return string(body), errors.New("response code isn't ok")
 	}
 
 	var v map[string]string
@@ -83,7 +86,7 @@ func (c Client) SendRequest(r *MailRequest) (string, error) {
 		return "", err
 	}
 	if _, ok := v["Code"]; ok {
-		return "", errors.New(string(body))
+		return "", errors.New("response doesn't contain Code")
 	}
 	return string(body), nil
 }
