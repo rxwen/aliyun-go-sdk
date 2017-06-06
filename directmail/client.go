@@ -39,7 +39,7 @@ func (c Client) SendRequest(r *MailRequest) (string, error) {
 	ps.Add("Version", "2015-11-23")
 	ps.Add("AccessKeyId", c.AccessKeyID)
 	ps.Add("SignatureMethod", "HMAC-SHA1")
-	ps.Add("Timestamp", time.Now().UTC().Format("2006-01-02T03:04:05Z"))
+	ps.Add("Timestamp", time.Now().UTC().Format("2006-01-02T15:04:05Z"))
 	ps.Add("SignatureVersion", "1.0")
 	id, _ := uuid.NewV4()
 	ps.Add("SignatureNonce", id.String())
