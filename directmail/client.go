@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/nu7hatch/gouuid"
+	uuid "github.com/nu7hatch/gouuid"
 	"github.com/rxwen/aliyun-go-sdk/parameters"
 )
 
@@ -77,7 +77,7 @@ func (c Client) SendRequest(r *MailRequest) (string, error) {
 		return "failed to read response", err
 	}
 	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
-		return string(body), errors.New("response code isn't ok")
+		return string(body), errors.New("response code isn't ok, request is " + ps.Concatenate())
 	}
 
 	var v map[string]string
