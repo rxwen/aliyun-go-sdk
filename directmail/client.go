@@ -14,7 +14,20 @@ import (
 	"github.com/rxwen/aliyun-go-sdk/parameters"
 )
 
-const baseURL = "https://dm.aliyuncs.com/"
+// https://help.aliyun.com/document_detail/96856.html
+//     杭州（华东 1）：
+//RegionId:cn-hangzhou
+//Host:dm.aliyuncs.com
+//Version:2015-11-23
+//新加坡（新加坡）：
+//RegionId:ap-southeast-1
+//Host:dm.ap-southeast-1.aliyuncs.com
+//Version:2017-06-22
+//澳洲（悉尼）：
+//RegionId:ap-southeast-2
+//Host:dm.ap-southeast-2.aliyuncs.com
+//Version:2017-06-22
+var baseURL = "https://dm.aliyuncs.com/"
 
 // Client is used to send mail request.
 type Client struct {
@@ -23,10 +36,11 @@ type Client struct {
 }
 
 // NewClient function construct a new Client.
-func NewClient(accessKeyID, accessKeySecret string) *Client {
+func NewClient(url, accessKeyID, accessKeySecret string) *Client {
 	c := new(Client)
 	c.AccessKeyID = accessKeyID
 	c.AccessKeySecret = accessKeySecret
+	baseURL = url
 
 	return c
 }
