@@ -14,6 +14,10 @@ import (
 	"github.com/rxwen/aliyun-go-sdk/parameters"
 )
 
+const URLForRegionCN = "https://dm.aliyuncs.com/"
+const URLForRegionSG = "https://dm.ap-southeast-1.aliyuncs.com/"
+const URLForRegionAU = "https://dm.ap-southeast-2.aliyuncs.com/"
+
 // https://help.aliyun.com/document_detail/96856.html
 //     杭州（华东 1）：
 //RegionId:cn-hangzhou
@@ -27,7 +31,7 @@ import (
 //RegionId:ap-southeast-2
 //Host:dm.ap-southeast-2.aliyuncs.com
 //Version:2017-06-22
-var baseURL = "https://dm.aliyuncs.com/"
+var baseURL = URLForRegionCN
 
 // Client is used to send mail request.
 type Client struct {
